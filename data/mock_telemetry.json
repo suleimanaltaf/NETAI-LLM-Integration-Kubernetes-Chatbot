@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "dataset_name": "netai_mock_perfsonar_anomaly",
+    "generated_at_utc": "2026-02-25T12:10:00Z",
+    "source_system": "perfSONAR + traceroute synthetic feed",
+    "test_window_minutes": 30,
+    "site_pair": {
+      "source_site": "NRP-Chicago",
+      "destination_site": "NRP-Seattle"
+    },
+    "path_id": "chi-sea-path-a"
+  },
+  "endpoints": {
+    "source": {
+      "hostname": "pscheduler-chicago.nrp.local",
+      "ip": "192.0.2.15",
+      "asn": 64510
+    },
+    "destination": {
+      "hostname": "k8s-worker-7.seattle.nrp.local",
+      "ip": "198.51.100.77",
+      "asn": 64520
+    }
+  },
+  "traceroute": {
+    "protocol": "icmp",
+    "runs": 6,
+    "anomaly_detected": true,
+    "hops": [
+      {
+        "hop": 1,
+        "router": "chi-gw1.nrp.local",
+        "ip": "10.10.0.1",
+        "avg_latency_ms": 0.55,
+        "packet_loss_pct": 0.0
+      },
+      {
+        "hop": 2,
+        "router": "chi-core2.nrp.local",
+        "ip": "10.10.1.2",
+        "avg_latency_ms": 1.9,
+        "packet_loss_pct": 0.0
+      },
+      {
+        "hop": 3,
+        "router": "midwest-backbone-a1.net",
+        "ip": "172.16.4.12",
+        "avg_latency_ms": 8.2,
+        "packet_loss_pct": 0.0
+      },
+      {
+        "hop": 4,
+        "router": "midwest-backbone-a4.net",
+        "ip": "172.16.8.5",
+        "avg_latency_ms": 11.4,
+        "packet_loss_pct": 0.0
+      },
+      {
+        "hop": 5,
+        "router": "denver-edge-ixp-2.net",
+        "ip": "172.31.44.8",
+        "avg_latency_ms": 22.1,
+        "packet_loss_pct": 3.1
+      },
+      {
+        "hop": 6,
+        "router": "saltlake-transit-7.net",
+        "ip": "172.31.91.19",
+        "avg_latency_ms": 30.8,
+        "packet_loss_pct": 5.8
+      },
+      {
+        "hop": 7,
+        "router": "sea-core3.nrp.local",
+        "ip": "203.0.113.23",
+        "avg_latency_ms": 96.3,
+        "packet_loss_pct": 64.2
+      },
+      {
+        "hop": 8,
+        "router": "k8s-worker-7.seattle.nrp.local",
+        "ip": "198.51.100.77",
+        "avg_latency_ms": 104.7,
+        "packet_loss_pct": 68.5
+      }
+    ]
+  },
+  "throughput": {
+    "tool": "iperf3",
+    "test_duration_seconds": 60,
+    "parallel_streams": 4,
+    "baseline_gbps_7day_avg": 9.4,
+    "latest_measurement_gbps": 1.6,
+    "jitter_ms": 22.4,
+    "retransmits": 1812
+  },
+  "latency": {
+    "owamp_avg_ms": 103.1,
+    "owamp_p95_ms": 168.4,
+    "baseline_avg_ms": 29.7,
+    "latency_spike_detected": true
+  },
+  "anomaly_summary": {
+    "severity": "critical",
+    "suspected_fault_domain": "NRP-Seattle core edge (hop 7)",
+    "key_observations": [
+      "Packet loss jumps sharply from 5.8% at hop 6 to 64.2% at hop 7.",
+      "End-to-end throughput dropped from 9.4 Gbps baseline to 1.6 Gbps.",
+      "Latency increased from 29.7 ms baseline to 103.1 ms average."
+    ],
+    "recommended_operator_checks": [
+      "Validate interface error counters on sea-core3 uplinks.",
+      "Check active congestion-control or QoS policy changes in Seattle edge.",
+      "Inspect recent routing updates affecting chi-sea-path-a."
+    ]
+  }
+}
