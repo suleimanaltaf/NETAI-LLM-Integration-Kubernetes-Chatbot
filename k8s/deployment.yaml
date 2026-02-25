@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netai-chatbot-api
+  labels:
+    app: netai-chatbot-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netai-chatbot-api
+  template:
+    metadata:
+      labels:
+        app: netai-chatbot-api
+    spec:
+      containers:
+        - name: api
+          image: netai-chatbot-api:0.1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: netai-llm-secret
+                  key: OPENAI_API_KEY
+            - name: OPENAI_BASE_URL
+              value: "https://api.openai.com/v1"
+            - name: OPENAI_MODEL
+              value: "gpt-4o"
+            - name: TELEMETRY_FILE_PATH
+              value: "data/mock_telemetry.json"
+            - name: OPENAI_TIMEOUT_SECONDS
+              value: "60"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "512Mi"
+              # Future inference pod profile if/when serving large OSS models in-cluster:
+              # nvidia.com/gpu: "1"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 20
