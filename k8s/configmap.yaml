@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: netai-chatbot-config
+  namespace: netai
+  labels:
+    app.kubernetes.io/name: netai-chatbot
+    app.kubernetes.io/component: config
+data:
+  LLM_API_BASE_URL: "https://llm.nrp-nautilus.io/v1"
+  LLM_MODEL: "qwen3-vl"
+  LLM_MOCK_MODE: "false"
+  APP_HOST: "0.0.0.0"
+  APP_PORT: "8000"
+  APP_LOG_LEVEL: "info"
+  DATABASE_URL: "sqlite:///data/netai_chatbot.db"
+  PERFSONAR_API_URL: "https://ps-dashboard.nrp.ai/api"
+  PERFSONAR_POLL_INTERVAL: "300"
+  K8S_NAMESPACE: "netai"
+  K8S_GPU_ENABLED: "false"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: netai-chatbot-secrets
+  namespace: netai
+  labels:
+    app.kubernetes.io/name: netai-chatbot
+    app.kubernetes.io/component: secrets
+type: Opaque
+stringData:
+  LLM_API_KEY: "replace-with-your-nrp-api-key"

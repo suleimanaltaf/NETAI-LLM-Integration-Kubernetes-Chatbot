@@ -1,0 +1,99 @@
+# GPU-enabled deployment for LLM inference on NRP
+# Use this when running with local model inference instead of the managed API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netai-chatbot-gpu
+  namespace: netai
+  labels:
+    app.kubernetes.io/name: netai-chatbot
+    app.kubernetes.io/component: gpu-inference
+    app.kubernetes.io/version: "0.1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: netai-chatbot-gpu
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: netai-chatbot-gpu
+        app.kubernetes.io/component: gpu-inference
+    spec:
+      containers:
+        - name: chatbot
+          image: ghcr.io/anirudh/netai-chatbot:latest-gpu
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: netai-chatbot-config
+            - secretRef:
+                name: netai-chatbot-secrets
+          env:
+            - name: K8S_GPU_ENABLED
+              value: "true"
+            - name: LLM_MOCK_MODE
+              value: "false"
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "8Gi"
+              nvidia.com/gpu: "1"
+            limits:
+              cpu: "4000m"
+              memory: "16Gi"
+              nvidia.com/gpu: "1"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+            - name: model-cache
+              mountPath: /app/models
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: netai-chatbot-data
+        - name: model-cache
+          persistentVolumeClaim:
+            claimName: netai-model-cache
+      tolerations:
+        - key: "nvidia.com/gpu"
+          operator: "Exists"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: nvidia.com/gpu.product
+                    operator: In
+                    values:
+                      - NVIDIA-A100-SXM4-80GB
+                      - NVIDIA-A100-SXM4-40GB
+                      - NVIDIA-A40
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: netai-model-cache
+  namespace: netai
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: rook-cephfs

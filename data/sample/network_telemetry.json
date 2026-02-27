@@ -1,0 +1,73 @@
+{
+  "description": "Sample perfSONAR throughput, latency, packet loss, and traceroute data for NRP network paths",
+  "records": [
+    {"metric_type": "throughput", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 9.42, "unit": "Gbps", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 9.38, "unit": "Gbps", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 3.21, "unit": "Gbps", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 9.51, "unit": "Gbps", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 8.76, "unit": "Gbps", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 8.91, "unit": "Gbps", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 8.83, "unit": "Gbps", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 9.02, "unit": "Gbps", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-uchicago.nrp.ai", "dst_host": "perfsonar-clemson.nrp.ai", "value": 7.54, "unit": "Gbps", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+    {"metric_type": "throughput", "src_host": "perfsonar-uchicago.nrp.ai", "dst_host": "perfsonar-clemson.nrp.ai", "value": 7.62, "unit": "Gbps", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {"test_type": "iperf3", "tool": "pscheduler"}},
+
+    {"metric_type": "latency", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 42.3, "unit": "ms", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 42.1, "unit": "ms", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 105.7, "unit": "ms", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 43.2, "unit": "ms", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 35.8, "unit": "ms", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 36.1, "unit": "ms", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 35.5, "unit": "ms", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+    {"metric_type": "latency", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 36.3, "unit": "ms", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {"test_type": "owamp", "tool": "pscheduler"}},
+
+    {"metric_type": "packet_loss", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 0.0, "unit": "%", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 0.0, "unit": "%", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 2.3, "unit": "%", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 0.01, "unit": "%", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 0.0, "unit": "%", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 0.0, "unit": "%", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 0.0, "unit": "%", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {}},
+    {"metric_type": "packet_loss", "src_host": "perfsonar-tacc.nrp.ai", "dst_host": "perfsonar-nersc.nrp.ai", "value": 0.0, "unit": "%", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {}},
+
+    {"metric_type": "retransmits", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 12, "unit": "count", "recorded_at": "2026-02-27T08:00:00Z", "metadata": {}},
+    {"metric_type": "retransmits", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 8, "unit": "count", "recorded_at": "2026-02-27T09:00:00Z", "metadata": {}},
+    {"metric_type": "retransmits", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 347, "unit": "count", "recorded_at": "2026-02-27T10:00:00Z", "metadata": {}},
+    {"metric_type": "retransmits", "src_host": "perfsonar-ucsd.nrp.ai", "dst_host": "perfsonar-starlight.nrp.ai", "value": 15, "unit": "count", "recorded_at": "2026-02-27T11:00:00Z", "metadata": {}}
+  ],
+  "traceroutes": [
+    {
+      "src_host": "perfsonar-ucsd.nrp.ai",
+      "dst_host": "perfsonar-starlight.nrp.ai",
+      "timestamp": "2026-02-27T10:00:00Z",
+      "completed": true,
+      "hops": [
+        {"hop_number": 1, "hostname": "gw-ucsd.nrp.ai", "ip_address": "10.0.1.1", "rtt_ms": 0.5, "asn": "AS7377"},
+        {"hop_number": 2, "hostname": "core1-ucsd.cenic.net", "ip_address": "137.164.26.1", "rtt_ms": 1.2, "asn": "AS2152"},
+        {"hop_number": 3, "hostname": "hpr-lax-hpr3.cenic.net", "ip_address": "137.164.27.5", "rtt_ms": 3.8, "asn": "AS2152"},
+        {"hop_number": 4, "hostname": "internet2-lax.cenic.net", "ip_address": "137.164.27.9", "rtt_ms": 4.1, "asn": "AS2152"},
+        {"hop_number": 5, "hostname": "ae-2.4079.rtsw.denv.net.internet2.edu", "ip_address": "163.253.1.37", "rtt_ms": 18.3, "asn": "AS11537"},
+        {"hop_number": 6, "hostname": "ae-1.4079.rtsw.chic.net.internet2.edu", "ip_address": "163.253.1.41", "rtt_ms": 35.7, "asn": "AS11537"},
+        {"hop_number": 7, "hostname": "starlight-chi.net.internet2.edu", "ip_address": "163.253.5.1", "rtt_ms": 36.2, "asn": "AS11537"},
+        {"hop_number": 8, "hostname": "perfsonar-starlight.nrp.ai", "ip_address": "206.220.240.10", "rtt_ms": 42.1, "asn": "AS10310"}
+      ]
+    },
+    {
+      "src_host": "perfsonar-tacc.nrp.ai",
+      "dst_host": "perfsonar-nersc.nrp.ai",
+      "timestamp": "2026-02-27T10:00:00Z",
+      "completed": true,
+      "hops": [
+        {"hop_number": 1, "hostname": "gw-tacc.nrp.ai", "ip_address": "10.0.2.1", "rtt_ms": 0.3, "asn": "AS36520"},
+        {"hop_number": 2, "hostname": "core1-tacc.utexas.edu", "ip_address": "129.116.100.1", "rtt_ms": 0.8, "asn": "AS36520"},
+        {"hop_number": 3, "hostname": "ae-0.rtsw.hous.net.internet2.edu", "ip_address": "163.253.1.53", "rtt_ms": 5.2, "asn": "AS11537"},
+        {"hop_number": 4, "hostname": "ae-2.rtsw.denv.net.internet2.edu", "ip_address": "163.253.1.57", "rtt_ms": 15.1, "asn": "AS11537"},
+        {"hop_number": 5, "hostname": "ae-0.rtsw.salt.net.internet2.edu", "ip_address": "163.253.1.61", "rtt_ms": 22.4, "asn": "AS11537"},
+        {"hop_number": 6, "hostname": "ae-1.rtsw.sunn.net.internet2.edu", "ip_address": "163.253.1.65", "rtt_ms": 30.8, "asn": "AS11537"},
+        {"hop_number": 7, "hostname": "esnet-sunn.net.internet2.edu", "ip_address": "163.253.5.9", "rtt_ms": 31.2, "asn": "AS293"},
+        {"hop_number": 8, "hostname": "nersc-gw.es.net", "ip_address": "198.129.254.10", "rtt_ms": 35.1, "asn": "AS293"},
+        {"hop_number": 9, "hostname": "perfsonar-nersc.nrp.ai", "ip_address": "128.55.12.10", "rtt_ms": 35.8, "asn": "AS293"}
+      ]
+    }
+  ]
+}

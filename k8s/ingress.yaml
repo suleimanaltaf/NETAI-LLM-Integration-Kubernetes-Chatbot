@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: netai-chatbot
+  namespace: netai
+  labels:
+    app.kubernetes.io/name: netai-chatbot
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - netai-chatbot.nrp-nautilus.io
+      secretName: netai-chatbot-tls
+  rules:
+    - host: netai-chatbot.nrp-nautilus.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: netai-chatbot
+                port:
+                  number: 80

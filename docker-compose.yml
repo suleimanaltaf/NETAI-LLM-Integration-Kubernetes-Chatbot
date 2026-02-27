@@ -1,0 +1,44 @@
+services:
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_MOCK_MODE=true
+      - LLM_API_BASE_URL=https://llm.nrp-nautilus.io/v1
+      - LLM_MODEL=qwen3-vl
+      - APP_LOG_LEVEL=info
+      - DATABASE_URL=sqlite:///data/netai_chatbot.db
+    volumes:
+      - chatbot-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Optional: Run with live LLM service
+  chatbot-live:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    environment:
+      - LLM_MOCK_MODE=false
+      - LLM_API_BASE_URL=https://llm.nrp-nautilus.io/v1
+      - LLM_API_KEY=${LLM_API_KEY}
+      - LLM_MODEL=qwen3-vl
+      - APP_LOG_LEVEL=info
+    volumes:
+      - chatbot-data-live:/app/data
+    profiles:
+      - live
+    restart: unless-stopped
+
+volumes:
+  chatbot-data:
+  chatbot-data-live:

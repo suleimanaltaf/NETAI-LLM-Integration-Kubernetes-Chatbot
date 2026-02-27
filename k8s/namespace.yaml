@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: netai
+  labels:
+    app.kubernetes.io/part-of: netai
+    app.kubernetes.io/managed-by: kubectl
